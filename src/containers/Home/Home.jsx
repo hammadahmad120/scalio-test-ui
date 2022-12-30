@@ -39,8 +39,10 @@ const Home = ({ location }) => {
                     }
                     setIsLoading(false);
                   }catch(err){
-                    setServerError("Post not found with given id");
                     setIsLoading(false);
+                    if(err.response?.status === 404){
+                      setServerError("Post not found with given id");
+                    } else setServerError(err.message ?? 'Server Error');
                   }
               }}
             >
