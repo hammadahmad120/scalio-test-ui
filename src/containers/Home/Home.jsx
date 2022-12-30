@@ -24,7 +24,7 @@ const Home = ({ location }) => {
                 id: ''
               }}
               validationSchema={Yup.object({
-                id: Yup.number().required("id is required"),
+                id: Yup.string().required("id is required"),
               })}
               onSubmit={async(values, actions) => {
                   setIsLoading(true);
@@ -42,14 +42,14 @@ const Home = ({ location }) => {
                     setIsLoading(false);
                     if(err.response?.status === 404){
                       setServerError("Post not found with given id");
-                    } else setServerError(err.message ?? 'Server Error');
+                    } else setServerError(err.response?.data?.message ?? err.message);
                   }
               }}
             >
               <Form>
                 <div>
                   <FormikInput
-                    type="number"
+                    type="text"
                     placeholder="post id"
                     name="id"
                   />

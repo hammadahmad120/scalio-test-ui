@@ -24,7 +24,8 @@ const Details = () => {
             <b>Title</b>
             <p>{post.title}</p>
             <b>Body</b>
-            <p>{post.body}</p>
+            <div><textarea rows={8} cols={50} readOnly value={post.body ?? ''}/></div>
+            
         </div>
       </div>
     );
